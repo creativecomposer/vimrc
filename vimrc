@@ -12,18 +12,25 @@ call minpac#add('HerringtonDarkholme/yats.vim')
 call minpac#add('posva/vim-vue')
 " fuzzy finder to open files easily
 call minpac#add('junegunn/fzf')
+" editorconfig plugin
+call minpac#add('editorconfig/editorconfig-vim')
 
 " add package update command
 command! PackUpdate call minpac#update()
+
+" set color
+colors zenburn
 
 " set leader key to Space
 let mapleader = "\<Space>"
 " shortcut to copy highlighted text to clipboard
 vnoremap <Leader>c "+y
-" shortcut to open the file manager window in a vertical split
+" shortcut to open the file manager (netrw) window in a vertical split
 nnoremap <Leader>f :20Lexplore<CR>
 " shortcut to paste from clipboard
 nnoremap <Leader>p "+p
+" shortcut to go to definition of current word
+nnoremap <Leader>g :ALEGoToDefinition<CR>
 " shortcut to clear previous search highlighting
 nnoremap <silent> <Leader>/ :nohlsearch<CR>
 " shortcut to open previous buffer
@@ -100,7 +107,9 @@ let g:ale_fixers = {
       \'typescript': ['prettier'],
       \'vue': ['prettier'],
       \'json': ['prettier'],
+      \'scss': ['prettier'],
+      \'html': ['prettier']
       \}
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
 let g:ale_sign_column_always = 1
 let g:ale_completion_enabled = 1
