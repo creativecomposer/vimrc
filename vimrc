@@ -25,8 +25,6 @@ colors zenburn
 let mapleader = "\<Space>"
 " shortcut to copy highlighted text to clipboard
 vnoremap <Leader>c "+y
-" shortcut to open the file manager (netrw) window in a vertical split
-nnoremap <Leader>f :20Lexplore<CR>
 " shortcut to paste from clipboard
 nnoremap <Leader>p "+p
 " shortcut to go to definition of current word
@@ -93,7 +91,7 @@ if has('nvim')
     " map Ctrl-v + Esc to send Esc command to the terminal program
     tnoremap <c-v><Esc> <Esc>
     " shortcut to open terminal window
-    nnoremap <m-c-k> :15new <Bar> terminal<cr>i
+    nnoremap <c-k> :15new <Bar> terminal<cr>i
     " move to next split easily from terminal mode 
     tnoremap <c-w> <c-\><c-n><c-w>j
     " highlight terminal cursor in red color when in normal mode within terminal buffer 
