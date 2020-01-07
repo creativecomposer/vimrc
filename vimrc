@@ -37,6 +37,8 @@ nnoremap <S-Tab> :bp<CR>
 nnoremap <Tab> :bn<CR>
 " shortcut to open fuzzy file finder
 nnoremap <C-p> :<C-u>FZF<CR>
+" map c-a because in macOS c-6 does not work
+nnoremap <C-a> <C-^>
 
 " enable syntax highlighting 
 syntax enable 
