@@ -6,10 +6,12 @@ call minpac#init()
 call minpac#add('k-takata/minpac', {'type': 'opt'})
 " ALE plugin for linting, prettifying, and auto completion
 call minpac#add('w0rp/ale')
+
+call minpac#add('sheerun/vim-polyglot')
 " typescript syntax
-call minpac#add('HerringtonDarkholme/yats.vim')
+" call minpac#add('HerringtonDarkholme/yats.vim')
 " vue file syntax
-call minpac#add('posva/vim-vue')
+" call minpac#add('posva/vim-vue')
 " fuzzy finder to open files easily
 call minpac#add('junegunn/fzf')
 " editorconfig plugin
@@ -108,8 +110,35 @@ let g:ale_fixers = {
       \'vue': ['prettier'],
       \'json': ['prettier'],
       \'scss': ['prettier'],
+      \'javascriptreact': ['prettier'],
+      \'typescriptreact': ['prettier'],
       \'html': ['prettier']
       \}
 let g:ale_fix_on_save = 0
 let g:ale_sign_column_always = 1
 let g:ale_completion_enabled = 1
+
+" Configure statusline
+function! GitBranch()
+  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! StatuslineGit()
+  let l:branchname = GitBranch()
+  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+endfunction
+
+set statusline=
+set statusline+=%#PmenuSel#
+set statusline+=%{StatuslineGit()}
+set statusline+=%#LineNr#
+set statusline+=\ %f
+set statusline+=%m
+set statusline+=%=
+set statusline+=%#CursorColumn#
+set statusline+=\ %y
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=\[%{&fileformat}\]
+set statusline+=\ %p%%
+set statusline+=\ %l:%c
+set statusline+=\ 
