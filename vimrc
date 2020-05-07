@@ -137,8 +137,6 @@ set statusline+=%m
 set statusline+=%=
 set statusline+=%#CursorColumn#
 set statusline+=\ %y
-set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\[%{&fileformat}\]
-set statusline+=\ %p%%
-set statusline+=\ %l:%c
+set statusline+=\[%{&fileencoding?&fileencoding:&encoding}\]
+set statusline+=\ %l/%L:%c
 set statusline+=\ 
