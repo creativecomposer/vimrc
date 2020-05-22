@@ -21,7 +21,11 @@ call minpac#add('editorconfig/editorconfig-vim')
 command! PackUpdate call minpac#update()
 
 " set color
-colors zenburn
+" colors zenburn
+set termguicolors
+color editplus
+" colorscheme ron
+" set guicursor=i:block-iCursor-blinkwait300-blinkon200-blinkoff150
 
 " set leader key to Space
 let mapleader = "\<Space>"
@@ -140,3 +144,17 @@ set statusline+=\ %y
 set statusline+=\[%{&fileencoding?&fileencoding:&encoding}\]
 set statusline+=\ %l/%L:%c
 set statusline+=\ 
+
+" Wrap selected text with tags
+function! VisualTagsWrap()
+  if !exists('g:tags_to_wrap')
+    let g:tags_to_wrap=[]
+  endif
+  let g:tags_to_wrap=split(input('space separated tags to wrap block: ', join(g:tags_to_wrap, ' ')), '\s\+')
+  if len(g:tags_to_wrap)>0
+    execute 'normal! `<o</'.join(reverse(g:tags_to_wrap), '></').'>'
+    execute 'normal! `<O<'.join(reverse(g:tags_to_wrap), '><').'>'
+  endif
+endfunction
+
+vnoremap <silent> <Leader>w <ESC>:call VisualTagsWrap()<CR>
