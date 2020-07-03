@@ -45,6 +45,9 @@ nnoremap <Tab> :bn<CR>
 nnoremap <C-p> :<C-u>FZF<CR>
 " map c-a because in macOS c-6 does not work
 nnoremap <C-a> <C-^>
+" move vertically by wrapped line with j and k
+nnoremap j gj
+nnoremap k gk
 
 " enable syntax highlighting 
 syntax enable 
