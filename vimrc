@@ -13,7 +13,7 @@ call minpac#add('sheerun/vim-polyglot')
 " vue file syntax
 " call minpac#add('posva/vim-vue')
 " fuzzy finder to open files easily
-call minpac#add('junegunn/fzf')
+call minpac#add('junegunn/fzf', { 'do': { -> fzf#install() } })
 " editorconfig plugin
 call minpac#add('editorconfig/editorconfig-vim')
 
