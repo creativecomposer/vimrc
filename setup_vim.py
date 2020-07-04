@@ -25,6 +25,7 @@ def update_bash_script(home_dir):
     text = """
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
 export FZF_DEFAULT_COMMAND='rg --files'
+export PATH=$PATH:~/.vim/pack/minpac/start/fzf/bin
 """
     if os.path.exists(bashrc):
         update_bashrc = True
@@ -100,6 +101,7 @@ if __name__ == '__main__':
         update_ripgreprc(home_dir)
         install_minpac(home_dir)
         update_nvim_init(home_dir)
+        print('*NOTE*: Install ripgrep using instructions at https://github.com/BurntSushi/ripgrep#installation')
     except Exception as ex:
         print('ERROR: an exception occurred. Details: {0}'.format(ex))
 
