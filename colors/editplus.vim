@@ -8,7 +8,7 @@ hi clear
 if exists("syntax_on")
     syntax reset
 endif
-let colors_name = "EditPlus"
+let colors_name = "editplus"
 
 " GUI
 hi Blank                           guibg=white   guifg=white   gui=none
