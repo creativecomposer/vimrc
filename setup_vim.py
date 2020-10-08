@@ -102,6 +102,7 @@ if __name__ == '__main__':
         install_minpac(home_dir)
         update_nvim_init(home_dir)
         print('*NOTE*: Install ripgrep using instructions at https://github.com/BurntSushi/ripgrep#installation')
+        print('*NOTE*: Install prettier using instructions at https://github.com/nvm-sh/nvm#installing-and-updating')
     except Exception as ex:
         print('ERROR: an exception occurred. Details: {0}'.format(ex))
 
