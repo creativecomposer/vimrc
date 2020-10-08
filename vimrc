@@ -21,9 +21,9 @@ call minpac#add('editorconfig/editorconfig-vim')
 command! PackUpdate call minpac#update()
 
 " set color
-" colors zenburn
 set termguicolors
-color editplus
+" color editplus
+colors zenburn
 " colorscheme ron
 " set guicursor=i:block-iCursor-blinkwait300-blinkon200-blinkoff150
 
