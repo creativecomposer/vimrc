@@ -16,6 +16,8 @@ call minpac#add('sheerun/vim-polyglot')
 call minpac#add('junegunn/fzf', { 'do': { -> fzf#install() } })
 " editorconfig plugin
 call minpac#add('editorconfig/editorconfig-vim')
+" one colorscheme
+call minpac#add('rakr/vim-one')
 
 " add package update command
 command! PackUpdate call minpac#update()
@@ -23,7 +25,9 @@ command! PackUpdate call minpac#update()
 " set color
 set termguicolors
 " color editplus
-colors zenburn
+" colors zenburn
+color one
+
 " colorscheme ron
 " set guicursor=i:block-iCursor-blinkwait300-blinkon200-blinkoff150
 
