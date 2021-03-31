@@ -86,6 +86,7 @@ def install_minpac(home_dir):
 
 
 if __name__ == '__main__':
+    print('NOTE: This script does not install NVim itself. Run install_nvim.sh for that.');
     parser = argparse.ArgumentParser(description='Tool to setup my Vim config in a Linux machine.')
     parser.add_argument('home_dir', metavar='home_dir', type=str,
         help='The directory where .vim folder, .bashrc, .ripgreprc, etc. should be created.')
@@ -101,8 +102,7 @@ if __name__ == '__main__':
         update_ripgreprc(home_dir)
         install_minpac(home_dir)
         update_nvim_init(home_dir)
-        print('*NOTE*: Install ripgrep using instructions at https://github.com/BurntSushi/ripgrep#installation')
-        print('*NOTE*: Install prettier using instructions at https://github.com/nvm-sh/nvm#installing-and-updating')
+        print('*NOTE*: Use system-update script to install prettier')
     except Exception as ex:
         print('ERROR: an exception occurred. Details: {0}'.format(ex))
 
