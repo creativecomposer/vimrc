@@ -6,12 +6,10 @@ call minpac#init()
 call minpac#add('k-takata/minpac', {'type': 'opt'})
 " ALE plugin for linting, prettifying, and auto completion
 call minpac#add('w0rp/ale')
-
+" auto completion
+call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
+" For different language syntax files
 call minpac#add('sheerun/vim-polyglot')
-" typescript syntax
-" call minpac#add('HerringtonDarkholme/yats.vim')
-" vue file syntax
-" call minpac#add('posva/vim-vue')
 " fuzzy finder to open files easily
 call minpac#add('junegunn/fzf', { 'do': { -> fzf#install() } })
 " editorconfig plugin
@@ -27,6 +25,7 @@ set termguicolors
 " color editplus
 " colors zenburn
 color one
+set background=light
 
 " colorscheme ron
 " set guicursor=i:block-iCursor-blinkwait300-blinkon200-blinkoff150
@@ -81,6 +80,7 @@ set expandtab
 
 " set 4 spaces only for Python
 autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+autocmd Filetype html setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 " do not save when switching to another buffer
 set hidden
@@ -125,9 +125,9 @@ let g:ale_fixers = {
       \'typescriptreact': ['prettier'],
       \'html': ['prettier']
       \}
-let g:ale_fix_on_save = 0
+let g:ale_fix_on_save = 1
 let g:ale_sign_column_always = 1
-let g:ale_completion_enabled = 1
+let g:ale_disable_lsp = 1
 
 " Configure statusline
 function! GitBranch()
