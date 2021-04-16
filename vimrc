@@ -4,9 +4,10 @@ call minpac#init()
 
 " minpac should update itself
 call minpac#add('k-takata/minpac', {'type': 'opt'})
-" ALE plugin for linting, prettifying, and auto completion
+" ALE plugin for linting, prettifying. Note: auto completion disabled, taken
+" care by coc.nvim
 call minpac#add('w0rp/ale')
-" auto completion
+" auto completion. Note: requires Node.js to work
 call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
 " For different language syntax files
 call minpac#add('sheerun/vim-polyglot')
@@ -37,7 +38,9 @@ vnoremap <Leader>c "+y
 " shortcut to paste from clipboard
 nnoremap <Leader>p "+p
 " shortcut to go to definition of current word
-nnoremap <Leader>g :ALEGoToDefinition<CR>
+nmap <silent> <Leader>g <Plug>(coc-definition)
+" shortcut to open the references of current word
+nmap <silent> <Leader>r <Plug>(coc-references)
 " shortcut to clear previous search highlighting
 nnoremap <silent> <Leader>/ :nohlsearch<CR>
 " shortcut to open previous buffer
@@ -55,10 +58,22 @@ nnoremap k gk
 " enable syntax highlighting 
 syntax enable 
 
+" indent when moving to the next line while writing code 
+set autoindent
+set smartindent
+filetype indent on
+
 " set tabs to have 2 spaces 
 set shiftwidth=2
 set tabstop=2
 set softtabstop=2
+
+" expand tabs into spaces 
+set expandtab
+
+" set 4 spaces only for Python
+autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+autocmd Filetype html setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 " show line numbers 
 set number
@@ -70,24 +85,8 @@ set cursorline
 " re-read files modified outside vim
 set autoread
 
-" indent when moving to the next line while writing code 
-set autoindent
-set smartindent
-filetype indent on
-
-" expand tabs into spaces 
-set expandtab
-
-" set 4 spaces only for Python
-autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
-autocmd Filetype html setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
-
 " do not save when switching to another buffer
 set hidden
-
-" set styles for file manager
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
 
 " Enable persistant undo
 set undofile
@@ -98,6 +97,9 @@ set mouse=a
 
 " Number of screen lines to keep above and below the cursor
 set scrolloff=3
+
+" Give more space for displaying messages
+set cmdheight=2
 
 " terminal window shortcuts
 if has('nvim') 
@@ -112,6 +114,10 @@ if has('nvim')
     " highlight terminal cursor in red color when in normal mode within terminal buffer 
     highlight! TermCursorNC guibg=red guifg=white ctermbg=1 ctermfg=15 
 endif
+
+" set styles for file manager
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
 
 " Configure ALE
 let g:ale_linters = {'javascript': ['eslint']}
