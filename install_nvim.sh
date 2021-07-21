@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# TODO: use ~/.vim as the nvim dir instead of /usr/local/bin, so it survives OS re-installs
 CUSTOM_NVIM_DIR=/usr/local/bin
 CUSTOM_NVIM_FILE=${CUSTOM_NVIM_DIR}/nvim.appimage
 
