@@ -20,7 +20,6 @@ def text_exists_in_file(filename, text):
 
 def update_bash_script(home_dir):
     bashrc = os.path.join(home_dir, '.bashrc')
-    bashprofile = os.path.join(home_dir, '.bash_profile')
     update_bashrc = False
     text = """
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
@@ -33,16 +32,25 @@ export PATH=$PATH:~/.vim/pack/minpac/start/fzf/bin
     else:
         print('Gonna update .bash_profile')
 
-    if update_bashrc and not text_exists_in_file(bashrc, 'RIPGREP_CONFIG_PATH'):
-        write_to_file(bashrc, 'a', text)
-    elif os.path.exists(bashprofile) and not text_exists_in_file(bashprofile, 'RIPGREP_CONFIG_PATH'):
+    if update_bashrc:
+        if not text_exists_in_file(bashrc, 'RIPGREP_CONFIG_PATH'):
+            write_to_file(bashrc, 'a', text)
+        else:
+            print('.bashrc already contains rg and ripgrep info. So no update.')
+    else:
+        update_bashprofile(text)
+
+    print('Update bash script done.')
+
+
+def update_bashprofile(text):
+    bashprofile = os.path.join(home_dir, '.bash_profile')
+    if os.path.exists(bashprofile) and not text_exists_in_file(bashprofile, 'RIPGREP_CONFIG_PATH'):
         write_to_file(bashprofile, 'a', text)
     elif not os.path.exists(bashprofile):
         write_to_file(bashprofile, 'w', text)
     else:
-        print('Bash script already contains rg and ripgrep info.')
-
-    print('Update bash script done.')
+        print('%s already contains rg and ripgrep info. So no update.' % bashprofile)
 
 
 def update_ripgreprc(home_dir):
@@ -85,6 +93,30 @@ def install_minpac(home_dir):
         raise Exception("git clone minpac failed. Error code: %d" % (retCode))
 
 
+def install_coc_extensions(home_dir):
+    coc_dir = os.path.join(home_dir, ".config/coc/extensions");
+    if not os.path.isdir(coc_dir):
+        print("coc extensions dir does not exist. Creating it.")
+        os.makedirs(coc_dir)
+    else:
+        print("coc extensions dir already exists. No need to create.")
+
+    package_json = os.path.join(coc_dir, "package.json")
+    if not os.path.exists(package_json):
+        print("coc extensions package.json does not exist. Creating it.")
+        write_to_file(package_json, "w", "{\"dependencies\":{}}")
+    else:
+        print("coc extensions package.json %s exists. So no update." % package_json)
+
+    print("Going to install coc extensions")
+    retCode = subprocess.call(["npm", "install", "coc-tsserver", "coc-json", "coc-html", "coc-css",
+                               "coc-pyright", "--global-style", "--ignore-scripts", "--no-bin-links",
+                               "--no-package-lock", "--only=prod"], cwd=coc_dir)
+    if retCode != 0:
+        print("npm install coc extensions failed. Error code: %d" % (retCode))
+    print("coc-extensions install done.")
+
+
 if __name__ == '__main__':
     print('NOTE: This script does not install NVim itself. Run install_nvim.sh for that.');
     parser = argparse.ArgumentParser(description='Tool to setup my Vim config in a Linux machine.')
@@ -102,6 +134,7 @@ if __name__ == '__main__':
         update_ripgreprc(home_dir)
         install_minpac(home_dir)
         update_nvim_init(home_dir)
+        install_coc_extensions(home_dir)
         print('*NOTE*: Use system-update script to install prettier')
     except Exception as ex:
         print('ERROR: an exception occurred. Details: {0}'.format(ex))
