@@ -43,6 +43,8 @@ nmap <silent> <Leader>g <Plug>(coc-definition)
 nmap <silent> <Leader>r <Plug>(coc-references)
 " shortcut to clear previous search highlighting
 nnoremap <silent> <Leader>/ :nohlsearch<CR>
+" shortcut to open netrw file manager
+nnoremap <silent> <Leader>t :Vexplore<CR>
 " shortcut to open previous buffer
 nnoremap <S-Tab> :bp<CR>
 " shortcut to open next buffer
@@ -118,6 +120,7 @@ endif
 " set styles for file manager
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
+let g:netrw_winsize = 25
 
 " Configure ALE
 let g:ale_linters = {'javascript': ['eslint']}
