@@ -17,6 +17,8 @@ call minpac#add('junegunn/fzf', { 'do': { -> fzf#install() } })
 call minpac#add('editorconfig/editorconfig-vim')
 " one colorscheme
 call minpac#add('rakr/vim-one')
+" Vim fugitive plugin for git functionality
+call minpac#add('https://tpope.io/vim/fugitive.git')
 
 " add package update command
 command! PackUpdate call minpac#update()
@@ -25,6 +27,7 @@ command! PackUpdate call minpac#update()
 set termguicolors
 " color editplus
 " colors zenburn
+let g:one_allow_italics = 1
 color one
 set background=light
 
