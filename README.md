@@ -2,7 +2,7 @@
 
 The config works both for vim 8.0 and neovim 0.4.x+.
 
-I use neovim 0.4.4.
+I use neovim 0.5.0.
 
 ## Install NeoVim
 
