@@ -29,7 +29,7 @@ set termguicolors
 " colors zenburn
 let g:one_allow_italics = 1
 color one
-set background=light
+set background=dark
 
 " colorscheme ron
 " set guicursor=i:block-iCursor-blinkwait300-blinkon200-blinkoff150
@@ -114,6 +114,7 @@ if has('nvim')
     tnoremap <c-v><Esc> <Esc>
     " shortcut to open terminal window
     nnoremap <c-k> :15new <Bar> terminal<cr>i
+    nnoremap <Leader>k :botright 70vnew <Bar> terminal<cr>i
     " move to next split easily from terminal mode 
     tnoremap <c-w> <c-\><c-n><c-w>j
     " highlight terminal cursor in red color when in normal mode within terminal buffer 
